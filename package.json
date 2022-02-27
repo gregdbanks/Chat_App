@@ -8,7 +8,8 @@
         "start": "node server.js",
         "server": "nodemon server.js",
         "client": "npm start --prefix client",
-        "dev": "concurrently \"npm run server\" \"npm run client\""
+        "dev": "concurrently \"npm run server\" \"npm run client\"",
+        "e2e": "npx cypress open"
     },
     "author": "Greg Banks",
     "license": "MIT",
@@ -38,6 +39,7 @@
         "@types/react-dom": "^17.0.11",
         "@types/react-router-dom": "^5.3.3",
         "@types/socket.io-client": "^3.0.0",
+        "cypress": "^9.5.0",
         "eslint": "^6.6.0",
         "eslint-plugin-react": "^7.21.4",
         "eslint-plugin-react-hooks": "^1.7.0",

@@ -1,5 +1,17 @@
 # MERN Chat
 
+![MERN](./MERN.png)
+
+- :white_check_mark: App has users
+- :white_check_mark: App has conversations
+- :white_check_mark: App has messages
+- :white_check_mark: Messages are associated with a user and a conversation
+- :white_check_mark: Messages have a timestamp
+- :white_check_mark: Conversations have participant (users) and messages
+- :white_check_mark: Users are participants in conversations, they can send and receive messages
+- :white_check_mark: API supports getting a list of conversations that could be consumed by a UI
+- :white_check_mark: API supports sending/receiving messages
+
 <br/><br/>
 Frontend is built with [Material UI](https://material-ui.com/) running on top of React.
 The backend is built with Express.js and Node.js.
