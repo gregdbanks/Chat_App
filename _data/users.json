@@ -1,0 +1,24 @@
+[
+	{
+		"_id": "621a2c83365326287d143f33",
+		"name": "Bruce Banner",
+		"username": "Bruce",
+		"password":"$2a$10$yDBIaI7SlrWTt8pyrTj1K.ExhH/l.oADWFtDtDQOwufY.3ks3tmG6",
+		"date":"1645889581848"
+	},
+	{
+		"_id": "621a2d45baac2a2ae0df575e",
+		"name": "Thor",
+		"username": "Thor",
+		"password":"$2a$10$W6e5XlA4R6pMVGAv3aLtvuxywvHH3MfIDMLtHdX78Q.z/gCE6oBE2",
+		"date":"1645889555123"
+	},
+	{
+		"_id": "621a2e291e01ee2b0c78105e",
+		"name": "Black Widow",
+		"username": "Black Widow",
+		"password":"$2a$10$KPyyc68LZ8B070Fz0iXA6uqe6Mxr6Rzxs13RMplUZEau0IdJRPrqC",
+		"date":"1645889605549"
+	}
+
+]

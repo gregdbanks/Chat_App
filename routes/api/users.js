@@ -1,18 +1,19 @@
-const express = require("express");
+const express = require('express');
 const router = express.Router();
-const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
-const mongoose = require("mongoose");
+const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+dotenv.config({ path: '../../config/keys.env' });
 
-const keys = require("../../config/keys");
-const verify = require("../../utilities/verify-token");
-const validateRegisterInput = require("../../validation/register");
-const validateLoginInput = require("../../validation/login");
-const User = require("../../models/User");
+const verify = require('../../utilities/verify-token');
+const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
+const User = require('../../models/User');
 
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   try {
-    let jwtUser = jwt.verify(verify(req), keys.secretOrKey);
+    let jwtUser = jwt.verify(verify(req), process.env.secretOrKey);
     let id = mongoose.Types.ObjectId(jwtUser.id);
 
     User.aggregate()
@@ -25,8 +26,8 @@ router.get("/", (req, res) => {
       .exec((err, users) => {
         if (err) {
           console.log(err);
-          res.setHeader("Content-Type", "application/json");
-          res.end(JSON.stringify({ message: "Failure" }));
+          res.setHeader('Content-Type', 'application/json');
+          res.end(JSON.stringify({ message: 'Failure' }));
           res.sendStatus(500);
         } else {
           res.send(users);
@@ -34,13 +35,13 @@ router.get("/", (req, res) => {
       });
   } catch (err) {
     console.log(err);
-    res.setHeader("Content-Type", "application/json");
-    res.end(JSON.stringify({ message: "Unauthorized" }));
+    res.setHeader('Content-Type', 'application/json');
+    res.end(JSON.stringify({ message: 'Unauthorized' }));
     res.sendStatus(401);
   }
 });
 
-router.post("/register", (req, res) => {
+router.post('/register', (req, res) => {
   // Form validation
   const { errors, isValid } = validateRegisterInput(req.body);
   // Check validation
@@ -49,7 +50,7 @@ router.post("/register", (req, res) => {
   }
   User.findOne({ username: req.body.username }).then((user) => {
     if (user) {
-      return res.status(400).json({ message: "Username already exists" });
+      return res.status(400).json({ message: 'Username already exists' });
     } else {
       const newUser = new User({
         name: req.body.name,
@@ -71,7 +72,7 @@ router.post("/register", (req, res) => {
               // Sign token
               jwt.sign(
                 payload,
-                keys.secretOrKey,
+                process.env.secretOrKey,
                 {
                   expiresIn: 31556926, // 1 year in seconds
                 },
@@ -79,10 +80,10 @@ router.post("/register", (req, res) => {
                   if (err) {
                     console.log(err);
                   } else {
-                    req.io.sockets.emit("users", user.username);
+                    req.io.sockets.emit('users', user.username);
                     res.json({
                       success: true,
-                      token: "Bearer " + token,
+                      token: 'Bearer ' + token,
                       name: user.name,
                     });
                   }
@@ -96,7 +97,7 @@ router.post("/register", (req, res) => {
   });
 });
 
-router.post("/login", (req, res) => {
+router.post('/login', (req, res) => {
   // Form validation
   const { errors, isValid } = validateLoginInput(req.body);
   // Check validation
@@ -109,7 +110,7 @@ router.post("/login", (req, res) => {
   User.findOne({ username }).then((user) => {
     // Check if user exists
     if (!user) {
-      return res.status(404).json({ usernamenotfound: "Username not found" });
+      return res.status(404).json({ usernamenotfound: 'Username not found' });
     }
     // Check password
     bcrypt.compare(password, user.password).then((isMatch) => {
@@ -123,14 +124,14 @@ router.post("/login", (req, res) => {
         // Sign token
         jwt.sign(
           payload,
-          keys.secretOrKey,
+          process.env.secretOrKey,
           {
             expiresIn: 31556926, // 1 year in seconds
           },
           (err, token) => {
             res.json({
               success: true,
-              token: "Bearer " + token,
+              token: 'Bearer ' + token,
               name: user.name,
               username: user.username,
               userId: user._id,
@@ -140,7 +141,7 @@ router.post("/login", (req, res) => {
       } else {
         return res
           .status(400)
-          .json({ passwordincorrect: "Password incorrect" });
+          .json({ passwordincorrect: 'Password incorrect' });
       }
     });
   });

@@ -1,23 +1,23 @@
-import React, { useState, useEffect } from "react";
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import LanguageIcon from "@material-ui/icons/Language";
-import Divider from "@material-ui/core/Divider";
-import { makeStyles } from "@material-ui/core/styles";
-import socketIOClient from "socket.io-client";
+import React, { useState, useEffect } from 'react';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import Avatar from '@material-ui/core/Avatar';
+import LanguageIcon from '@material-ui/icons/Language';
+import Divider from '@material-ui/core/Divider';
+import { makeStyles } from '@material-ui/core/styles';
+import socketIOClient from 'socket.io-client';
 
-import { useGetConversations } from "../Services/chatService";
-import { authenticationService } from "../Services/authenticationService";
-import commonUtilites from "../Utilities/common";
+import { useGetConversations } from '../Services/chatService';
+import { authenticationService } from '../Services/authenticationService';
+import commonUtilites from '../Utilities/common';
 
 const useStyles = makeStyles((theme) => ({
   subheader: {
-    display: "flex",
-    alignItems: "center",
-    cursor: "pointer",
+    display: 'flex',
+    alignItems: 'center',
+    cursor: 'pointer',
   },
   globe: {
     backgroundColor: theme.palette.primary.dark,
@@ -26,8 +26,8 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.primary.dark,
   },
   list: {
-    maxHeight: "calc(100vh - 112px)",
-    overflowY: "auto",
+    maxHeight: 'calc(100vh - 112px)',
+    overflowY: 'auto',
   },
 }));
 
@@ -57,10 +57,10 @@ const Conversations = (props) => {
 
   useEffect(() => {
     let socket = socketIOClient(process.env.REACT_APP_API_URL);
-    socket.on("messages", (data) => setNewConversation(data));
+    socket.on('messages', (data) => setNewConversation(data));
 
     return () => {
-      socket.removeListener("messages");
+      socket.removeListener('messages');
     };
   }, []);
 
@@ -69,7 +69,7 @@ const Conversations = (props) => {
       <ListItem
         classes={{ root: classes.subheader }}
         onClick={() => {
-          props.setScope("Global Chat");
+          props.setScope('Global Chat');
         }}
       >
         <ListItemAvatar>

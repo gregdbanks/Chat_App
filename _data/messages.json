@@ -1,0 +1,20 @@
+[
+    {
+        "_id": "6216a9ef100e291b72df677f",
+		"conversation": "621a4b7a4ca7cc303faad3cc",
+        "to": "621a2e291e01ee2b0c78105e",
+        "from": "621a2d45baac2a2ae0df575e",
+        "body": "Hey, How are you?",
+        "date": "2022-02-26T15:47:06.593+00:00",
+        "__v": 0
+    },
+    {
+        "_id": "6216a9ef100e291b72df677e",
+		"conversation": "621a4b7a4ca7cc303faad3cc",
+        "to": "621a2d45baac2a2ae0df575e",
+        "from": "621a2e291e01ee2b0c78105e",
+        "body": "Hey Thor, Im good, sup?",
+        "date": "2022-02-26T15:47:29.064+00:00",
+        "__v": 0
+    }
+]
