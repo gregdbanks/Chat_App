@@ -29,6 +29,9 @@ describe('Chat API requirements', () => {
     cy.get(
       ':nth-child(4) > .MuiListItemText-root > .MuiListItemText-secondary > :nth-child(1)'
     ).should('contain', "He's adopted.");
+    cy.get('#message').click().type('tester testing yall');
+    cy.get('.MuiGrid-grid-xs-1 > .MuiButtonBase-root').click();
+    cy.get('.makeStyles-subheader-20').click();
   });
 
   it('Messages are associated with a user and a conversation', () => {
