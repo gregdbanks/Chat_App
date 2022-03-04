@@ -1,19 +1,19 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // Create Schema for Users
 const ConversationSchema = new Schema({
-  recipients: [{ type: Schema.Types.ObjectId, ref: "users" }],
+  recipients: [{ type: Schema.Types.ObjectId, ref: 'users' }],
   lastMessage: {
     type: String,
   },
   date: {
-    type: String,
+    type: Date,
     default: Date.now,
   },
 });
 
 module.exports = Conversation = mongoose.model(
-  "conversations",
+  'conversations',
   ConversationSchema
 );
