@@ -34,13 +34,15 @@
 
 ## Improvements Needed
 
-- More Static testing, Typescript
+- More Static and Unit testing (Typescript/Jest)
 - Security, such as protection against cross site scripting. NoSql injections, param pollution. Potentially add rate limiter and header security(helmet)
 - Deployment and Build Process CI/CD
 - 2 factor auth
 - Add Roles, like admin, user etc
 - Ability to upload photos or code snippets
 - Emoji and GIF support
+- Fit on XS screens < 600px
+- Security Package Auditing (NPM)
 
 ## Additional Feature Ideas
 
